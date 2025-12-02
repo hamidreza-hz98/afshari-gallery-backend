@@ -1,0 +1,30 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no user@server_ip "
+            cd /var/www/afshari-gallery/backend &&
+            git pull origin master &&
+            docker build -t backend . &&
+            docker stop backend || true &&
+            docker rm backend || true &&
+            docker run -d --name backend -p 3002:3002 --link mongodb:mongo backend
+          "
