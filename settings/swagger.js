@@ -10,7 +10,7 @@ const options = {
       description: "API documentation for Vinesh backend",
     },
     servers: [
-      { url: "http://localhost:5000/api" },
+      { url: "http://localhost:3002" },
     ],
   },
   apis: ["./modules/**/*.js"],

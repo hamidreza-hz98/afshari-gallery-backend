@@ -11,7 +11,7 @@ const { swaggerUi, swaggerSpec } = require("./settings/swagger");
 
 const routes = require('./modules');
 
-app.use('/api', routes);
+app.use('/', routes);
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

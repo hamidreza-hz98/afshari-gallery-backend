@@ -27,7 +27,7 @@ const transactionController = {
       });
 
       // callback_url: include transaction id so you can find the txn on callback
-      const callbackUrl = `${APP_BASE}/api/transaction/verify?tx=${txn._id}`;
+      const callbackUrl = `${APP_BASE}/transaction/verify?tx=${txn._id}`;
 
       const result = await transactionService.requestPayment({
         amount,
