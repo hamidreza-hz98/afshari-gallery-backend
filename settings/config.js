@@ -1,7 +1,7 @@
 const cors = require("cors");
 const responseMiddleware = require("../middlewares/response");
 const helmet = require("helmet");
-require('dotenv').config();
+require("dotenv").config();
 
 const fs = require("fs");
 const path = require("path");
@@ -19,7 +19,17 @@ module.exports = function (app, express) {
         "http://localhost:3001",
         "http://127.0.0.1:3000",
         "http://127.0.0.1:3001",
+
+        "https://afsharigallery.ir",
+        "https://www.afsharigallery.ir",
+
+        "https://panel.afsharigallery.ir",
+        "https://www.panel.afsharigallery.ir",
+
+        "https://api.afsharigallery.ir",
+
         process.env.FRONTEND_BASE_URL,
+        process.env.PANEL_BASE_URL,
       ],
       credentials: true,
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
