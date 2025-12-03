@@ -1,4 +1,4 @@
-name: Deploy Backend
+name: 🚀 Deploy Backend to Server
 
 on:
   push:
@@ -10,21 +10,35 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.9.1
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Deploy to server
+      - name: Deploy and Restart Backend
         run: |
-          ssh -o StrictHostKeyChecking=no root@89.32.249.114 << 'EOF'
-          cd /var/www/afshari-gallery/backend &&
-          git pull origin master &&
-          docker build -t backend . &&
-          docker stop backend || true &&
-          docker rm backend || true &&
-          docker run -d --name backend -p 3002:3002 --link mongodb:mongo backend
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SERVER_IP }} >> ~/.ssh/known_hosts
+
+          ssh -T -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
+          # Go to your backend directory
+          cd /var/www/afshari-gallery/backend || exit 1
+
+          # Pull latest changes from GitHub
+          git fetch origin master
+          git reset --hard origin/master
+
+          npm ci --omit=dev --legacy-peer-deps
+
+          if [ $? -eq 0 ]; then
+            pm2 restart afshari-backend
+          else
+            pm2 start npm --name afshari-backend -- start
+          fi
+
+          pm2 save
+          exit
           EOF
