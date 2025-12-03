@@ -23,20 +23,20 @@ const ContactInfoSchema = Joi.object({
         })
     .default(""),
 
-  email: Joi.string().trim().email().default(""),
+  email: Joi.string().trim().email().default("").optional(),
 
   address: Joi.string().trim(),
   mapIframe: Joi.string().trim(),
 });
 
 const SocialSchema = Joi.object({
-  instagram: Joi.string().uri().trim().default(""),
-  telegram: Joi.string().uri().trim().default(""),
-  whatsapp: Joi.string().uri().trim().default(""),
-  facebook: Joi.string().uri().trim().default(""),
-  youtube: Joi.string().uri().trim().default(""),
-  linkedin: Joi.string().uri().trim().default(""),
-  x: Joi.string().uri().trim().default(""),
+  instagram: Joi.string().uri().trim().default("").optional(),
+  telegram: Joi.string().uri().trim().default("").optional(),
+  whatsapp: Joi.string().uri().trim().default("").optional(),
+  facebook: Joi.string().uri().trim().default("").optional(),
+  youtube: Joi.string().uri().trim().default("").optional(),
+  linkedin: Joi.string().uri().trim().default("").optional(),
+  x: Joi.string().uri().trim().default("").optional(),
 });
 
 const FAQSchema = Joi.object({
