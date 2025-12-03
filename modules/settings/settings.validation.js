@@ -30,13 +30,13 @@ const ContactInfoSchema = Joi.object({
 });
 
 const SocialSchema = Joi.object({
-  instagram: Joi.string().uri().trim(),
-  telegram: Joi.string().uri().trim(),
-  whatsapp: Joi.string().uri().trim(),
-  facebook: Joi.string().uri().trim(),
-  youtube: Joi.string().uri().trim(),
-  linkedin: Joi.string().uri().trim(),
-  x: Joi.string().uri().trim(),
+  instagram: Joi.string().uri().trim().default(""),
+  telegram: Joi.string().uri().trim().default(""),
+  whatsapp: Joi.string().uri().trim().default(""),
+  facebook: Joi.string().uri().trim().default(""),
+  youtube: Joi.string().uri().trim().default(""),
+  linkedin: Joi.string().uri().trim().default(""),
+  x: Joi.string().uri().trim().default(""),
 });
 
 const FAQSchema = Joi.object({
