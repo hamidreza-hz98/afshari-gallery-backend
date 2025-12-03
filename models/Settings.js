@@ -7,7 +7,7 @@ const ContactInfoSchema = new Schema(
   {
     mobile: { type: String },
     phone: { type: String },
-    email: { type: String },
+    email: { type: String, default: "" },
     address: { type: String },
     mapIframe: { type: String },
   },
@@ -16,13 +16,13 @@ const ContactInfoSchema = new Schema(
 
 const SocialSchema = new Schema(
   {
-    instagram: { type: String },
-    telegram: { type: String },
-    whatsapp: { type: String },
-    facebook: { type: String },
-    youtube: { type: String },
-    linkedin: { type: String },
-    x: { type: String },
+    instagram: { type: String, default: "" },
+    telegram: { type: String, default: "" },
+    whatsapp: { type: String, default: "" },
+    facebook: { type: String, default: "" },
+    youtube: { type: String, default: "" },
+    linkedin: { type: String, default: "" },
+    x: { type: String, default: "" },
   },
   { _id: false }
 );
