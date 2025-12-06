@@ -253,6 +253,7 @@ const cartService = {
 
     if (!cart) {
       cart = await Cart.create({
+        customer: customerId,
         products: [],
         price: {},
       });
