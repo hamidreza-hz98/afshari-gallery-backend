@@ -22,13 +22,14 @@ module.exports = function (app, express) {
         "http://127.0.0.1:3001",
         "http://127.0.0.1:3002",
 
-        "https://afsharigallery.ir",
-        "https://www.afsharigallery.ir",
+        "https://watch-landing.vinesh-tech.ir",
+        "https://www.watch-landing.vinesh-tech.ir",
 
-        "https://panel.afsharigallery.ir",
-        "https://www.panel.afsharigallery.ir",
-
-        "https://api.afsharigallery.ir",
+        "https://watch-panel.vinesh-tech.ir",
+        "https://www.watch-panel.vinesh-tech.ir",
+        
+        "https://watch-backend.vinesh-tech.ir",
+        "https://www.watch-backend.vinesh-tech.ir",
 
         process.env.FRONTEND_BASE_URL,
         process.env.PANEL_BASE_URL,

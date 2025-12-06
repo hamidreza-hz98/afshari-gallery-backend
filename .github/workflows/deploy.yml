@@ -25,7 +25,7 @@ jobs:
 
           ssh -T -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
           # Go to your backend directory
-          cd /var/www/afshari-gallery/backend || exit 1
+          cd /var/www/watch-gallery/backend || exit 1
 
           # Pull latest changes from GitHub
           git fetch origin master
@@ -34,9 +34,9 @@ jobs:
           npm ci --omit=dev --legacy-peer-deps
 
           if [ $? -eq 0 ]; then
-            pm2 restart afshari-backend
+            pm2 restart vinesh-watch-backend
           else
-            pm2 start npm --name afshari-backend -- start
+            pm2 start npm --name vinesh-watch-backend -- start
           fi
 
           pm2 save
