@@ -4,15 +4,15 @@ const productService = require("../product/product.service");
 
 const cartService = {
   async create(data) {
-    if (Object.keys(data).length !== 0) {
-      const existing = await Cart.exists({ customer: data.customer });
+    // if (Object.keys(data).length !== 0) {
+    //   const existing = await Cart.exists({ customer: data.customer });
 
-      if (existing) {
-        throwError("کاربر در حال حاضر یک سبد خرید فعال دارد.", 409);
-      }
-    }
+    //   if (existing) {
+    //     throwError("کاربر در حال حاضر یک سبد خرید فعال دارد.", 409);
+    //   }
+    // }
 
-    const cart = new Cart(data);
+    const cart = new Cart(data || { products: [], price: {} });
 
     return await cart.save();
   },
